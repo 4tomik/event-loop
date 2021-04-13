@@ -1,0 +1,64 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1.6fr 0.7fr;
+    gap: 25px 25px;
+    grid-template-areas:
+      "Code Call-stack"
+      "Console Call-stack";
+  }
+  
+  .Code { grid-area: Code; }
+  
+  .Console { grid-area: Console; }
+  
+  .Call-stack { grid-area: Call-stack; }
+  
+  
+  .Call-stack,
+  .Code,
+  .Console {
+    background-color: #282c34;
+    border-radius: 10px;
+  }
+  
+  
+  .Call-stack {
+    border: solid 2px #61afef;
+  }
+  
+  .Code {
+    border: solid 2px #abb2bf;
+    font-size: 40px;
+  }
+  
+  .Console {
+    border: solid 2px #e06c67;
+  }
+  
+  .stack {
+    height: 90%;
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  
+  .stack > div {
+    background-color: #61afef;
+    margin-bottom: 15px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+  }
+  
+  .output {
+    font-size: 32px;
+    text-align: left;
+    padding-left: 20px;
+  }
+  
+  .output > p {
+    margin: 0;
+    color: #abb2bf;
+  }

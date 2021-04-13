@@ -1,0 +1,218 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 3.4fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr 0.8fr;
+  gap: 25px 25px;
+  grid-template-areas:
+    "Code Call-stack Web-APIs"
+    "Code Event-Loop Event-Loop"
+    "Code Micro-Tasks Micro-Tasks"
+    "Code Render Render"
+    "Code DOM-Tasks DOM-Tasks"
+    "Code UI-Tasks UI-Tasks"
+    "Code Timer-Tasks Timer-Tasks";
+}
+
+.Call-stack {
+  grid-area: Call-stack;
+}
+
+.Web-APIs {
+  grid-area: Web-APIs;
+}
+
+.Event-Loop {
+  grid-area: Event-Loop;
+  display: grid;
+  place-items: center;
+}
+
+.Micro-Tasks {
+  grid-area: Micro-Tasks;
+}
+
+.Render {
+  grid-area: Render;
+}
+
+.DOM-Tasks {
+  grid-area: DOM-Tasks;
+}
+
+.UI-Tasks {
+  grid-area: UI-Tasks;
+}
+
+.Timer-Tasks {
+  grid-area: Timer-Tasks;
+}
+
+.Code {
+  grid-area: Code;
+}
+
+.Console {
+  grid-area: Console;
+}
+
+.Call-stack,
+.Web-APIs,
+.UI-Tasks,
+.Timer-Tasks,
+.DOM-Tasks,
+.Code,
+.Render,
+.Micro-Tasks,
+.Console {
+  background-color: #282c34;
+  border-radius: 10px;
+}
+
+
+.micro {
+  height: 50%;
+  width: 95%;
+  margin: auto;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.micro > div {
+  background-color: #56b6c2;
+  margin-right: 15px;
+  font-size: 35px;
+  width: 70px;
+  height: 52px;
+  border-radius: 10px;
+}
+
+.Micro-Tasks {
+  border: solid 2px #56b6c2;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.Web-APIs {
+  border: solid 2px #c678dd;
+}
+
+.Render,
+.DOM-Tasks {
+  border: solid 2px #e5c07b;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.Call-stack {
+  border: solid 2px #61afef;
+}
+
+.UI-Tasks,
+.Timer-Tasks {
+  border: solid 2px #98c379;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.Code {
+  border: solid 2px #abb2bf;
+  font-size: 40px;
+}
+
+.Console {
+  border: solid 2px #e06c67;
+}
+
+.stack {
+  height: 80%;
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.stack > div {
+  background-color: #61afef;
+  margin-bottom: 15px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+}
+
+.apis {
+  height: 85%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.apis > div {
+  background-color: #c678dd;
+  margin-top: 15px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+}
+
+.apis > div.inline {
+  background-color: #282c34;
+  display: flex;
+  justify-content: center;
+}
+
+.apis > div.inline > div {
+  background-color: #c678dd;
+  width: 50%;
+  border-radius: 10px;
+  height: 89%;
+}
+
+.queue {
+  height: 50%;
+  width: 95%;
+  margin: auto;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.queue > div {
+  background-color: #98c379;
+  font-size: 35px;
+  margin-right: 15px;
+  width: 70px;
+  height: 52px;
+  border-radius: 10px;
+}
+
+.render {
+  height: 50%;
+  width: 95%;
+  margin: auto;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.render > div {
+  background-color: #e5c07b;
+  margin-right: 15px;
+  width: 70px;
+  height: 52px;
+  border-radius: 10px;
+  font-size: 35px;
+}
+
+.output {
+  font-size: 32px;
+  text-align: left;
+  padding-left: 20px;
+}
+
+.output > p {
+  margin: 0;
+  color: #abb2bf;
+}
+
+.micro, .render, .queue {
+  margin: 13px 0 0 0;
+}

@@ -1,0 +1,1638 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>reveal.js</title>
+
+
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/black.css" id="theme">
+    <link rel="stylesheet" href="css/micro-render.css">
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/atom-one-dark.css" id="highlight-theme">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <!--------------------------------- 0 --------------------------------->
+
+        <section data-background-color="#1d2127" data-auto-animate>
+          <div class="grid-container">
+            <div class="Call-stack">
+              Call stack
+              <div class="stack">
+                <div data-id="anonymous" style="opacity: 0%;">anonymous()</div>
+              </div>
+            </div>
+
+            <div class="Web-APIs">
+              Web APIs
+              <div class="apis">
+                <div style="display: flex; justify-content: center; opacity: 0%;" data-id="timout">
+                  <div>
+                    btnClick(cc)
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="Code" style="height: 500px;">
+              Code
+              <pre style="padding: 10px"><code data-trim data-id="code" data-line-numbers>
+                const compute = (n) => {};
+
+                const nums = [1.5, 2.5, 3.5, 4.5];
+                for (const n of nums) {
+                  Promise.resolve().then(() =>
+                    compute(n)
+                  );
+                }
+              </code></pre>
+            </div>
+
+            <div class="DOM-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="queue">
+                DOM Tasks
+              </div>
+              <div class="queue">
+                <div data-id="ct" style="opacity: 0%;">cb</div>
+              </div>
+            </div>
+
+            <div class="UI-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="ui">
+                UI Tasks
+              </div>
+              <div class="queue">
+                <div data-id="cc" style="opacity: 0%;">cb</div>
+              </div>
+            </div>
+
+            <div class="Timer-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="queue">
+                Timer Tasks
+              </div>
+              <div class="queue">
+
+              </div>
+            </div>
+
+
+            <div class="Render">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="micro">
+                Render
+              </div>
+              <div class="render">
+                <div data-id="cp" style="opacity: 0%; position: absolute;" >r</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #c678dd; margin-right: 25%;">S</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #98c379;">L</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #e06c67;">P</div>
+              </div>
+            </div>
+
+            <div class="Micro-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="micro">
+                Micro Tasks
+              </div>
+              <div class="micro">
+                <div data-id="cp" style="position: absolute; opacity: 0%;">m1</div>
+                <div data-id="cp" style="position: absolute; opacity: 0%;">m2</div>
+                <div data-id="cp" style="position: absolute; opacity: 0%;">m3</div>
+                <div data-id="cp" style="position: absolute; opacity: 0%;">m4</div>
+              </div>
+            </div>
+
+            <div class="Console">
+              Console
+              <div class="output">
+                <p data-id="hello" style="opacity: 0%;">1.5</p>
+                <p data-id="hello" style="opacity: 0%;">2.5</p>
+                <p data-id="hello" style="opacity: 0%;">3.5</p>
+                <p data-id="hello" style="opacity: 0%;">4.5</p>
+              </div>
+            </div>
+
+            <div class="Event-Loop">
+              <div style="display: flex;">
+                <div>
+                  <img width="50px" style="margin: 0; margin-right: 20px;" src="svg/event.svg" alt="loop">
+                </div>
+                <div data-id="loop">
+                  Event Loop
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!--------------------------------- 1 --------------------------------->
+        <section data-background-color="#1d2127" data-auto-animate>
+          <div class="grid-container">
+            <div class="Call-stack">
+              Call stack
+              <div class="stack">
+                <div data-id="anonymous" style="opacity: 100%;">anonymous()</div>
+              </div>
+            </div>
+
+            <div class="Web-APIs">
+              Web APIs
+              <div class="apis">
+                <div style="display: flex; justify-content: center; opacity: 0%;" data-id="timout">
+                  <div>
+                    btnClick(cc)
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="Code" style="height: 500px;">
+              Code
+              <pre style="padding: 10px"><code data-trim data-id="code" data-line-numbers=4,5,7,8>
+                const compute = (n) => {};
+
+                const nums = [1.5, 2.5, 3.5, 4.5];
+                for (const n of nums) {
+                  Promise.resolve().then(() =>
+                    compute(n)
+                  );
+                }
+              </code></pre>
+            </div>
+
+            <div class="DOM-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="queue">
+                DOM Tasks
+              </div>
+              <div class="queue">
+                <div data-id="ct" style="opacity: 0%;">cb</div>
+              </div>
+            </div>
+
+            <div class="UI-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="ui">
+                UI Tasks
+              </div>
+              <div class="queue">
+                <div data-id="cc" style="opacity: 0%;">cb</div>
+              </div>
+            </div>
+
+            <div class="Timer-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="queue">
+                Timer Tasks
+              </div>
+              <div class="queue">
+
+              </div>
+            </div>
+
+
+            <div class="Render">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="micro">
+                Render
+              </div>
+              <div class="render">
+                <div data-id="cp" style="opacity: 0%; position: absolute;" >r</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #c678dd; margin-right: 25%;">S</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #98c379;">L</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #e06c67;">P</div>
+              </div>
+            </div>
+
+            <div class="Micro-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="micro">
+                Micro Tasks
+              </div>
+              <div class="micro">
+                <div data-id="cp" style="position: absolute; opacity: 0%;">m1</div>
+                <div data-id="cp" style="position: absolute; opacity: 0%;">m2</div>
+                <div data-id="cp" style="position: absolute; opacity: 0%;">m3</div>
+                <div data-id="cp" style="position: absolute; opacity: 0%;">m4</div>
+              </div>
+            </div>
+
+            <div class="Console">
+              Console
+              <div class="output">
+                <p data-id="hello" style="opacity: 0%;">1.5</p>
+                <p data-id="hello" style="opacity: 0%;">2.5</p>
+                <p data-id="hello" style="opacity: 0%;">3.5</p>
+                <p data-id="hello" style="opacity: 0%;">4.5</p>
+              </div>
+            </div>
+
+            <div class="Event-Loop">
+              <div style="display: flex;">
+                <div>
+                  <img width="50px" style="margin: 0; margin-right: 20px;" src="svg/event.svg" alt="loop">
+                </div>
+                <div data-id="loop">
+                  Event Loop
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!--------------------------------- 2 --------------------------------->
+        <section data-background-color="#1d2127" data-auto-animate>
+          <div class="grid-container">
+            <div class="Call-stack">
+              Call stack
+              <div class="stack">
+                <div data-id="anonymous" style="opacity: 100%;">anonymous()</div>
+              </div>
+            </div>
+
+            <div class="Web-APIs">
+              Web APIs
+              <div class="apis">
+                <div style="display: flex; justify-content: center; opacity: 0%;" data-id="timout">
+                  <div>
+                    btnClick(cc)
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="Code" style="height: 500px;">
+              Code
+              <pre style="padding: 10px"><code data-trim data-id="code" data-line-numbers=4,5,7,8>
+                const compute = (n) => {};
+
+                const nums = [1.5, 2.5, 3.5, 4.5];
+                for (const n of nums) {
+                  Promise.resolve().then(() =>
+                    compute(n)
+                  );
+                }
+              </code></pre>
+            </div>
+
+            <div class="DOM-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="queue">
+                DOM Tasks
+              </div>
+              <div class="queue">
+                <div data-id="ct" style="opacity: 0%;">cb</div>
+              </div>
+            </div>
+
+            <div class="UI-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="ui">
+                UI Tasks
+              </div>
+              <div class="queue">
+                <div data-id="cc" style="opacity: 0%;">cb</div>
+              </div>
+            </div>
+
+            <div class="Timer-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="queue">
+                Timer Tasks
+              </div>
+              <div class="queue">
+
+              </div>
+            </div>
+
+
+            <div class="Render">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="micro">
+                Render
+              </div>
+              <div class="render">
+                <div data-id="cp" style="opacity: 0%; position: absolute;" >r</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #c678dd; margin-right: 25%;">S</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #98c379;">L</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #e06c67;">P</div>
+              </div>
+            </div>
+
+            <div class="Micro-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="micro">
+                Micro Tasks
+              </div>
+              <div class="micro">
+                <div data-id="cp" style="position: absolute; opacity: 100%;">m1</div>
+                <div data-id="cp" style="position: absolute; opacity: 0%;">m2</div>
+                <div data-id="cp" style="position: absolute; opacity: 0%;">m3</div>
+                <div data-id="cp" style="position: absolute; opacity: 0%;">m4</div>
+              </div>
+            </div>
+
+            <div class="Console">
+              Console
+              <div class="output">
+                <p data-id="hello" style="opacity: 0%;">1.5</p>
+                <p data-id="hello" style="opacity: 0%;">2.5</p>
+                <p data-id="hello" style="opacity: 0%;">3.5</p>
+                <p data-id="hello" style="opacity: 0%;">4.5</p>
+              </div>
+            </div>
+
+            <div class="Event-Loop">
+              <div style="display: flex;">
+                <div>
+                  <img width="50px" style="margin: 0; margin-right: 20px;" src="svg/event.svg" alt="loop">
+                </div>
+                <div data-id="loop">
+                  Event Loop
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!--------------------------------- 2 --------------------------------->
+        <section data-background-color="#1d2127" data-auto-animate>
+          <div class="grid-container">
+            <div class="Call-stack">
+              Call stack
+              <div class="stack">
+                <div data-id="anonymous" style="opacity: 100%;">anonymous()</div>
+              </div>
+            </div>
+
+            <div class="Web-APIs">
+              Web APIs
+              <div class="apis">
+                <div style="display: flex; justify-content: center; opacity: 0%;" data-id="timout">
+                  <div>
+                    btnClick(cc)
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="Code" style="height: 500px;">
+              Code
+              <pre style="padding: 10px"><code data-trim data-id="code" data-line-numbers=4,5,7,8>
+                const compute = (n) => {};
+
+                const nums = [1.5, 2.5, 3.5, 4.5];
+                for (const n of nums) {
+                  Promise.resolve().then(() =>
+                    compute(n)
+                  );
+                }
+              </code></pre>
+            </div>
+
+            <div class="DOM-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="queue">
+                DOM Tasks
+              </div>
+              <div class="queue">
+                <div data-id="ct" style="opacity: 0%;">cb</div>
+              </div>
+            </div>
+
+            <div class="UI-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="ui">
+                UI Tasks
+              </div>
+              <div class="queue">
+                <div data-id="cc" style="opacity: 0%;">cb</div>
+              </div>
+            </div>
+
+            <div class="Timer-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="queue">
+                Timer Tasks
+              </div>
+              <div class="queue">
+
+              </div>
+            </div>
+
+
+            <div class="Render">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="micro">
+                Render
+              </div>
+              <div class="render">
+                <div data-id="cp" style="opacity: 0%; position: absolute;" >r</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #c678dd; margin-right: 25%;">S</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #98c379;">L</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #e06c67;">P</div>
+              </div>
+            </div>
+
+            <div class="Micro-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="micro">
+                Micro Tasks
+              </div>
+              <div class="micro">
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 60%;">m1</div>
+                <div data-id="cp" style="position: absolute; opacity: 100%;">m2</div>
+                <div data-id="cp" style="position: absolute; opacity: 0%;">m3</div>
+                <div data-id="cp" style="position: absolute; opacity: 0%;">m4</div>
+              </div>
+            </div>
+
+            <div class="Console">
+              Console
+              <div class="output">
+                <p data-id="hello" style="opacity: 0%;">1.5</p>
+                <p data-id="hello" style="opacity: 0%;">2.5</p>
+                <p data-id="hello" style="opacity: 0%;">3.5</p>
+                <p data-id="hello" style="opacity: 0%;">4.5</p>
+              </div>
+            </div>
+
+            <div class="Event-Loop">
+              <div style="display: flex;">
+                <div>
+                  <img width="50px" style="margin: 0; margin-right: 20px;" src="svg/event.svg" alt="loop">
+                </div>
+                <div data-id="loop">
+                  Event Loop
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!--------------------------------- 2 --------------------------------->
+        <section data-background-color="#1d2127" data-auto-animate>
+          <div class="grid-container">
+            <div class="Call-stack">
+              Call stack
+              <div class="stack">
+                <div data-id="anonymous" style="opacity: 100%;">anonymous()</div>
+              </div>
+            </div>
+
+            <div class="Web-APIs">
+              Web APIs
+              <div class="apis">
+                <div style="display: flex; justify-content: center; opacity: 0%;" data-id="timout">
+                  <div>
+                    btnClick(cc)
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="Code" style="height: 500px;">
+              Code
+              <pre style="padding: 10px"><code data-trim data-id="code" data-line-numbers=4,5,7,8>
+                const compute = (n) => {};
+
+                const nums = [1.5, 2.5, 3.5, 4.5];
+                for (const n of nums) {
+                  Promise.resolve().then(() =>
+                    compute(n)
+                  );
+                }
+              </code></pre>
+            </div>
+
+            <div class="DOM-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="queue">
+                DOM Tasks
+              </div>
+              <div class="queue">
+                <div data-id="ct" style="opacity: 0%;">cb</div>
+              </div>
+            </div>
+
+            <div class="UI-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="ui">
+                UI Tasks
+              </div>
+              <div class="queue">
+                <div data-id="cc" style="opacity: 0%;">cb</div>
+              </div>
+            </div>
+
+            <div class="Timer-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="queue">
+                Timer Tasks
+              </div>
+              <div class="queue">
+
+              </div>
+            </div>
+
+
+            <div class="Render">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="micro">
+                Render
+              </div>
+              <div class="render">
+                <div data-id="cp" style="opacity: 0%; position: absolute;" >r</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #c678dd; margin-right: 25%;">S</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #98c379;">L</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #e06c67;">P</div>
+              </div>
+            </div>
+
+            <div class="Micro-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="micro">
+                Micro Tasks
+              </div>
+              <div class="micro">
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 60%;">m1</div>
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 55%;">m2</div>
+                <div data-id="cp" style="position: absolute; opacity: 100%;">m3</div>
+                <div data-id="cp" style="position: absolute; opacity: 0%;">m4</div>
+              </div>
+            </div>
+
+            <div class="Console">
+              Console
+              <div class="output">
+                <p data-id="hello" style="opacity: 0%;">1.5</p>
+                <p data-id="hello" style="opacity: 0%;">2.5</p>
+                <p data-id="hello" style="opacity: 0%;">3.5</p>
+                <p data-id="hello" style="opacity: 0%;">4.5</p>
+              </div>
+            </div>
+
+            <div class="Event-Loop">
+              <div style="display: flex;">
+                <div>
+                  <img width="50px" style="margin: 0; margin-right: 20px;" src="svg/event.svg" alt="loop">
+                </div>
+                <div data-id="loop">
+                  Event Loop
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!--------------------------------- 2 --------------------------------->
+        <section data-background-color="#1d2127" data-auto-animate>
+          <div class="grid-container">
+            <div class="Call-stack">
+              Call stack
+              <div class="stack">
+                <div data-id="anonymous" style="opacity: 100%;">anonymous()</div>
+              </div>
+            </div>
+
+            <div class="Web-APIs">
+              Web APIs
+              <div class="apis">
+                <div style="display: flex; justify-content: center; opacity: 0%;" data-id="timout">
+                  <div>
+                    btnClick(cc)
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="Code" style="height: 500px;">
+              Code
+              <pre style="padding: 10px"><code data-trim data-id="code" data-line-numbers=4,5,7,8>
+                const compute = (n) => {};
+
+                const nums = [1.5, 2.5, 3.5, 4.5];
+                for (const n of nums) {
+                  Promise.resolve().then(() =>
+                    compute(n)
+                  );
+                }
+              </code></pre>
+            </div>
+
+            <div class="DOM-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="queue">
+                DOM Tasks
+              </div>
+              <div class="queue">
+                <div data-id="ct" style="opacity: 0%;">cb</div>
+              </div>
+            </div>
+
+            <div class="UI-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="ui">
+                UI Tasks
+              </div>
+              <div class="queue">
+                <div data-id="cc" style="opacity: 0%;">cb</div>
+              </div>
+            </div>
+
+            <div class="Timer-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="queue">
+                Timer Tasks
+              </div>
+              <div class="queue">
+
+              </div>
+            </div>
+
+
+            <div class="Render">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="micro">
+                Render
+              </div>
+              <div class="render">
+                <div data-id="cp" style="opacity: 0%; position: absolute;" >r</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #c678dd; margin-right: 25%;">S</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #98c379;">L</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #e06c67;">P</div>
+              </div>
+            </div>
+
+            <div class="Micro-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="micro">
+                Micro Tasks
+              </div>
+              <div class="micro">
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 60%;">m1</div>
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 55%;">m2</div>
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 50%;">m3</div>
+                <div data-id="cp" style="position: absolute; opacity: 100%;">m4</div>
+              </div>
+            </div>
+
+            <div class="Console">
+              Console
+              <div class="output">
+                <p data-id="hello" style="opacity: 0%;">1.5</p>
+                <p data-id="hello" style="opacity: 0%;">2.5</p>
+                <p data-id="hello" style="opacity: 0%;">3.5</p>
+                <p data-id="hello" style="opacity: 0%;">4.5</p>
+              </div>
+            </div>
+
+            <div class="Event-Loop">
+              <div style="display: flex;">
+                <div>
+                  <img width="50px" style="margin: 0; margin-right: 20px;" src="svg/event.svg" alt="loop">
+                </div>
+                <div data-id="loop">
+                  Event Loop
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!--------------------------------- 2 --------------------------------->
+        <section data-background-color="#1d2127" data-auto-animate>
+          <div class="grid-container">
+            <div class="Call-stack">
+              Call stack
+              <div class="stack">
+                <div data-id="anonymous" style="opacity: 100%;">anonymous()</div>
+              </div>
+            </div>
+
+            <div class="Web-APIs">
+              Web APIs
+              <div class="apis">
+                <div style="display: flex; justify-content: center; opacity: 0%;" data-id="timout">
+                  <div>
+                    btnClick(cc)
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="Code" style="height: 500px;">
+              Code
+              <pre style="padding: 10px"><code data-trim data-id="code" data-line-numbers=4,5,7,8>
+                const compute = (n) => {};
+
+                const nums = [1.5, 2.5, 3.5, 4.5];
+                for (const n of nums) {
+                  Promise.resolve().then(() =>
+                    compute(n)
+                  );
+                }
+              </code></pre>
+            </div>
+
+            <div class="DOM-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="queue">
+                DOM Tasks
+              </div>
+              <div class="queue">
+                <div data-id="ct" style="opacity: 0%;">cb</div>
+              </div>
+            </div>
+
+            <div class="UI-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="ui">
+                UI Tasks
+              </div>
+              <div class="queue">
+                <div data-id="cc" style="opacity: 0%;">cb</div>
+              </div>
+            </div>
+
+            <div class="Timer-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="queue">
+                Timer Tasks
+              </div>
+              <div class="queue">
+
+              </div>
+            </div>
+
+
+            <div class="Render">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="micro">
+                Render
+              </div>
+              <div class="render">
+                <div data-id="cp" style="opacity: 0%; position: absolute;" >r</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #c678dd; margin-right: 25%;">S</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #98c379;">L</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #e06c67;">P</div>
+              </div>
+            </div>
+
+            <div class="Micro-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="micro">
+                Micro Tasks
+              </div>
+              <div class="micro">
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 60%;">m1</div>
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 55%;">m2</div>
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 50%;">m3</div>
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 45%;">m4</div>
+              </div>
+            </div>
+
+            <div class="Console">
+              Console
+              <div class="output">
+                <p data-id="hello" style="opacity: 0%;">1.5</p>
+                <p data-id="hello" style="opacity: 0%;">2.5</p>
+                <p data-id="hello" style="opacity: 0%;">3.5</p>
+                <p data-id="hello" style="opacity: 0%;">4.5</p>
+              </div>
+            </div>
+
+            <div class="Event-Loop">
+              <div style="display: flex;">
+                <div>
+                  <img width="50px" style="margin: 0; margin-right: 20px;" src="svg/event.svg" alt="loop">
+                </div>
+                <div data-id="loop">
+                  Event Loop
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!--------------------------------- 2 --------------------------------->
+        <section data-background-color="#1d2127" data-auto-animate>
+          <div class="grid-container">
+            <div class="Call-stack">
+              Call stack
+              <div class="stack">
+                <div data-id="anonymous" style="opacity: 0%;">m1()</div>
+              </div>
+            </div>
+
+            <div class="Web-APIs">
+              Web APIs
+              <div class="apis">
+                <div style="display: flex; justify-content: center; opacity: 0%;" data-id="timout">
+                  <div>
+                    btnClick(cc)
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="Code" style="height: 500px;">
+              Code
+              <pre style="padding: 10px"><code data-trim data-id="code" data-line-numbers=2>
+                const compute = (n) => {};
+
+                const nums = [1.5, 2.5, 3.5, 4.5];
+                for (const n of nums) {
+                  Promise.resolve().then(() =>
+                    compute(n)
+                  );
+                }
+              </code></pre>
+            </div>
+
+            <div class="DOM-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="queue">
+                DOM Tasks
+              </div>
+              <div class="render">
+                <div data-id="ct" style="opacity: 0%;">c1</div>
+                <div data-id="ct" style="opacity: 0%;">c2</div>
+                <div data-id="ct" style="opacity: 0%;">c3</div>
+              </div>
+            </div>
+
+            <div class="UI-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="ui">
+                UI Tasks
+              </div>
+              <div class="queue">
+                <div data-id="cc" style="opacity: 0%;">cb</div>
+              </div>
+            </div>
+
+            <div class="Timer-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="queue">
+                Timer Tasks
+              </div>
+              <div class="queue">
+
+              </div>
+            </div>
+
+
+            <div class="Render">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="micro">
+                Render
+              </div>
+              <div class="render">
+                <div data-id="cp" style="opacity: 0%; position: absolute;" >r</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #c678dd; margin-right: 25%;">S</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #98c379;">L</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #e06c67;">P</div>
+              </div>
+            </div>
+
+            <div class="Micro-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="micro">
+                Micro Tasks
+              </div>
+              <div class="micro">
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 60%;">m1</div>
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 55%;">m2</div>
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 50%;">m3</div>
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 45%;">m4</div>
+              </div>
+            </div>
+
+            <div class="Console">
+              Console
+              <div class="output">
+                <p data-id="hello" style="opacity: 0%;">1.5</p>
+                <p data-id="hello" style="opacity: 0%;">2.5</p>
+                <p data-id="hello" style="opacity: 0%;">3.5</p>
+                <p data-id="hello" style="opacity: 0%;">4.5</p>
+              </div>
+            </div>
+
+            <div class="Event-Loop">
+              <div style="display: flex;">
+                <div>
+                  <img width="50px" style="margin: 0; margin-right: 20px;" src="svg/event.svg" alt="loop">
+                </div>
+                <div data-id="loop">
+                  Event Loop
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!--------------------------------- 2 --------------------------------->
+        <section data-background-color="#1d2127" data-auto-animate>
+          <div class="grid-container">
+            <div class="Call-stack">
+              Call stack
+              <div class="stack">
+                <div data-id="anonymous" style="opacity: 0%;">m1()</div>
+              </div>
+            </div>
+
+            <div class="Web-APIs">
+              Web APIs
+              <div class="apis">
+                <div style="display: flex; justify-content: center; opacity: 0%;" data-id="timout">
+                  <div>
+                    btnClick(cc)
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="Code" style="height: 500px;">
+              Code
+              <pre style="padding: 10px"><code data-trim data-id="code" data-line-numbers=2>
+                const compute = (n) => {};
+
+                const nums = [1.5, 2.5, 3.5, 4.5];
+                for (const n of nums) {
+                  Promise.resolve().then(() =>
+                    compute(n)
+                  );
+                }
+              </code></pre>
+            </div>
+
+            <div class="DOM-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="queue">
+                DOM Tasks
+              </div>
+              <div class="render">
+                <div data-id="ct" style="opacity: 100%;">c1</div>
+                <div data-id="ct" style="opacity: 100%;">c2</div>
+                <div data-id="ct" style="opacity: 100%;">c3</div>
+              </div>
+            </div>
+
+            <div class="UI-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="ui">
+                UI Tasks
+              </div>
+              <div class="queue">
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 60%;">c1</div>
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 55%;">c2</div>
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 50%;">c3</div>
+              </div>
+            </div>
+
+            <div class="Timer-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="queue">
+                Timer Tasks
+              </div>
+              <div class="queue">
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 60%">c1</div>
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 55%;">c2</div>
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 50%;">c3</div>
+              </div>
+            </div>
+
+
+            <div class="Render">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="micro">
+                Render
+              </div>
+              <div class="render">
+                <div data-id="cp" style="opacity: 100%; position: absolute;" >r</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #c678dd; margin-right: 25%;">S</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #98c379;">L</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #e06c67;">P</div>
+              </div>
+            </div>
+
+            <div class="Micro-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="micro">
+                Micro Tasks
+              </div>
+              <div class="micro">
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 60%;">m1</div>
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 55%;">m2</div>
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 50%;">m3</div>
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 45%;">m4</div>
+              </div>
+            </div>
+
+            <div class="Console">
+              Console
+              <div class="output">
+                <p data-id="hello" style="opacity: 0%;">1.5</p>
+                <p data-id="hello" style="opacity: 0%;">2.5</p>
+                <p data-id="hello" style="opacity: 0%;">3.5</p>
+                <p data-id="hello" style="opacity: 0%;">4.5</p>
+              </div>
+            </div>
+
+            <div class="Event-Loop">
+              <div style="display: flex;">
+                <div>
+                  <img width="50px" style="margin: 0; margin-right: 20px;" src="svg/event.svg" alt="loop">
+                </div>
+                <div data-id="loop">
+                  Event Loop
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!--------------------------------- 2 --------------------------------->
+        <section data-background-color="#1d2127" data-auto-animate>
+          <div class="grid-container">
+            <div class="Call-stack">
+              Call stack
+              <div class="stack">
+                <div data-id="anonymous" style="opacity: 100%;">m1()</div>
+                <div data-id="anonymous" style="opacity: 0%;">compute(1.5)</div>
+              </div>
+            </div>
+
+            <div class="Web-APIs">
+              Web APIs
+              <div class="apis">
+                <div style="display: flex; justify-content: center; opacity: 0%;" data-id="timout">
+                  <div>
+                    btnClick(cc)
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="Code" style="height: 500px;">
+              Code
+              <pre style="padding: 10px"><code data-trim data-id="code" data-line-numbers=6>
+                const compute = (n) => {};
+
+                const nums = [1.5, 2.5, 3.5, 4.5];
+                for (const n of nums) {
+                  Promise.resolve().then(() =>
+                    compute(n)
+                  );
+                }
+              </code></pre>
+            </div>
+
+            <div class="DOM-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="queue">
+                DOM Tasks
+              </div>
+              <div class="render">
+                <div data-id="ct" style="opacity: 100%;">c1</div>
+                <div data-id="ct" style="opacity: 100%;">c2</div>
+                <div data-id="ct" style="opacity: 100%;">c3</div>
+              </div>
+            </div>
+
+            <div class="UI-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="ui">
+                UI Tasks
+              </div>
+              <div class="queue">
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 60%;">c1</div>
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 55%;">c2</div>
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 50%;">c3</div>
+              </div>
+            </div>
+
+            <div class="Timer-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="queue">
+                Timer Tasks
+              </div>
+              <div class="queue">
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 60%">c1</div>
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 55%;">c2</div>
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 50%;">c3</div>
+              </div>
+            </div>
+
+
+            <div class="Render">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="micro">
+                Render
+              </div>
+              <div class="render">
+                <div data-id="cp" style="opacity: 100%; position: absolute;" >r</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #c678dd; margin-right: 25%;">S</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #98c379;">L</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #e06c67;">P</div>
+              </div>
+            </div>
+
+            <div class="Micro-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="micro">
+                Micro Tasks
+              </div>
+              <div class="micro">
+                <div data-id="cp" style="position: absolute; opacity: 0%; right: 60%;">m1</div>
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 60%;">m2</div>
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 55%;">m3</div>
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 50%;">m4</div>
+              </div>
+            </div>
+
+            <div class="Console">
+              Console
+              <div class="output">
+                <p data-id="hello" style="opacity: 0%;">1.5</p>
+                <p data-id="hello" style="opacity: 0%;">2.5</p>
+                <p data-id="hello" style="opacity: 0%;">3.5</p>
+                <p data-id="hello" style="opacity: 0%;">4.5</p>
+              </div>
+            </div>
+
+            <div class="Event-Loop">
+              <div style="display: flex;">
+                <div>
+                  <img width="50px" style="margin: 0; margin-right: 20px;" src="svg/event.svg" alt="loop">
+                </div>
+                <div data-id="loop">
+                  Event Loop
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      
+        <!--------------------------------- 2 --------------------------------->
+        <section data-background-color="#1d2127" data-auto-animate>
+          <div class="grid-container">
+            <div class="Call-stack">
+              Call stack
+              <div class="stack">
+                <div data-id="anonymous" style="opacity: 100%;">m1()</div>
+                <div data-id="anonymous" style="opacity: 100%;">compute(1.5)</div>
+              </div>
+            </div>
+
+            <div class="Web-APIs">
+              Web APIs
+              <div class="apis">
+                <div style="display: flex; justify-content: center; opacity: 0%;" data-id="timout">
+                  <div>
+                    btnClick(cc)
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="Code" style="height: 500px;">
+              Code
+              <pre style="padding: 10px"><code data-trim data-id="code" data-line-numbers=1>
+                const compute = (n) => {};
+
+                const nums = [1.5, 2.5, 3.5, 4.5];
+                for (const n of nums) {
+                  Promise.resolve().then(() =>
+                    compute(n)
+                  );
+                }
+              </code></pre>
+            </div>
+
+            <div class="DOM-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="queue">
+                DOM Tasks
+              </div>
+              <div class="render">
+                <div data-id="ct" style="opacity: 100%;">c1</div>
+                <div data-id="ct" style="opacity: 100%;">c2</div>
+                <div data-id="ct" style="opacity: 100%;">c3</div>
+              </div>
+            </div>
+
+            <div class="UI-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="ui">
+                UI Tasks
+              </div>
+              <div class="queue">
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 60%;">c1</div>
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 55%;">c2</div>
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 50%;">c3</div>
+              </div>
+            </div>
+
+            <div class="Timer-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="queue">
+                Timer Tasks
+              </div>
+              <div class="queue">
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 60%">c1</div>
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 55%;">c2</div>
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 50%;">c3</div>
+              </div>
+            </div>
+
+
+            <div class="Render">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="micro">
+                Render
+              </div>
+              <div class="render">
+                <div data-id="cp" style="opacity: 100%; position: absolute;" >r</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #c678dd; margin-right: 25%;">S</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #98c379;">L</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #e06c67;">P</div>
+              </div>
+            </div>
+
+            <div class="Micro-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="micro">
+                Micro Tasks
+              </div>
+              <div class="micro">
+                <div data-id="cp" style="position: absolute; opacity: 0%; right: 60%;">m1</div>
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 60%;">m2</div>
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 55%;">m3</div>
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 50%;">m4</div>
+              </div>
+            </div>
+
+            <div class="Console">
+              Console
+              <div class="output">
+                <p data-id="hello" style="opacity: 0%;">1.5</p>
+                <p data-id="hello" style="opacity: 0%;">2.5</p>
+                <p data-id="hello" style="opacity: 0%;">3.5</p>
+                <p data-id="hello" style="opacity: 0%;">4.5</p>
+              </div>
+            </div>
+
+            <div class="Event-Loop">
+              <div style="display: flex;">
+                <div>
+                  <img width="50px" style="margin: 0; margin-right: 20px;" src="svg/event.svg" alt="loop">
+                </div>
+                <div data-id="loop">
+                  Event Loop
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!--------------------------------- 2 --------------------------------->
+        <section data-background-color="#1d2127" data-auto-animate>
+          <div class="grid-container">
+            <div class="Call-stack">
+              Call stack
+              <div class="stack">
+                <div data-id="anonymous" style="opacity: 0%;">m1()</div>
+                <div data-id="anonymous" style="opacity: 0%;">compute(1.5)</div>
+              </div>
+            </div>
+
+            <div class="Web-APIs">
+              Web APIs
+              <div class="apis">
+                <div style="display: flex; justify-content: center; opacity: 0%;" data-id="timout">
+                  <div>
+                    btnClick(cc)
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="Code" style="height: 500px;">
+              Code
+              <pre style="padding: 10px"><code data-trim data-id="code" data-line-numbers=2>
+                const compute = (n) => {};
+
+                const nums = [1.5, 2.5, 3.5, 4.5];
+                for (const n of nums) {
+                  Promise.resolve().then(() =>
+                    compute(n)
+                  );
+                }
+              </code></pre>
+            </div>
+
+            <div class="DOM-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="queue">
+                DOM Tasks
+              </div>
+              <div class="render">
+                <div data-id="ct" style="opacity: 100%;">c1</div>
+                <div data-id="ct" style="opacity: 100%;">c2</div>
+                <div data-id="ct" style="opacity: 100%;">c3</div>
+              </div>
+            </div>
+
+            <div class="UI-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="ui">
+                UI Tasks
+              </div>
+              <div class="queue">
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 60%;">c1</div>
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 55%;">c2</div>
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 50%;">c3</div>
+              </div>
+            </div>
+
+            <div class="Timer-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="queue">
+                Timer Tasks
+              </div>
+              <div class="queue">
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 60%">c1</div>
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 55%;">c2</div>
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 50%;">c3</div>
+              </div>
+            </div>
+
+
+            <div class="Render">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="micro">
+                Render
+              </div>
+              <div class="render">
+                <div data-id="cp" style="opacity: 100%; position: absolute;" >r</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #c678dd; margin-right: 25%;">S</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #98c379;">L</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #e06c67;">P</div>
+              </div>
+            </div>
+
+            <div class="Micro-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="micro">
+                Micro Tasks
+              </div>
+              <div class="micro">
+                <div data-id="cp" style="position: absolute; opacity: 0%; right: 60%;">m1</div>
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 60%;">m2</div>
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 55%;">m3</div>
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 50%;">m4</div>
+              </div>
+            </div>
+
+            <div class="Console">
+              Console
+              <div class="output">
+                <p data-id="hello" style="opacity: 0%;">1.5</p>
+                <p data-id="hello" style="opacity: 0%;">2.5</p>
+                <p data-id="hello" style="opacity: 0%;">3.5</p>
+                <p data-id="hello" style="opacity: 0%;">4.5</p>
+              </div>
+            </div>
+
+            <div class="Event-Loop">
+              <div style="display: flex;">
+                <div>
+                  <img width="50px" style="margin: 0; margin-right: 20px;" src="svg/event.svg" alt="loop">
+                </div>
+                <div data-id="loop">
+                  Event Loop
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!--------------------------------- 2 --------------------------------->
+        <section data-background-color="#1d2127" data-auto-animate>
+          <div class="grid-container">
+            <div class="Call-stack">
+              Call stack
+              <div class="stack">
+                <div data-id="anonymous" style="opacity: 100%;">m2()</div>
+                <div data-id="anonymous" style="opacity: 100%;">compute(2.5)</div>
+              </div>
+            </div>
+
+            <div class="Web-APIs">
+              Web APIs
+              <div class="apis">
+                <div style="display: flex; justify-content: center; opacity: 0%;" data-id="timout">
+                  <div>
+                    btnClick(cc)
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="Code" style="height: 500px;">
+              Code
+              <pre style="padding: 10px"><code data-trim data-id="code" data-line-numbers=6>
+                const compute = (n) => {};
+
+                const nums = [1.5, 2.5, 3.5, 4.5];
+                for (const n of nums) {
+                  Promise.resolve().then(() =>
+                    compute(n)
+                  );
+                }
+              </code></pre>
+            </div>
+
+            <div class="DOM-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="queue">
+                DOM Tasks
+              </div>
+              <div class="render">
+                <div data-id="ct" style="opacity: 100%;">c1</div>
+                <div data-id="ct" style="opacity: 100%;">c2</div>
+                <div data-id="ct" style="opacity: 100%;">c3</div>
+              </div>
+            </div>
+
+            <div class="UI-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="ui">
+                UI Tasks
+              </div>
+              <div class="queue">
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 60%;">c1</div>
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 55%;">c2</div>
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 50%;">c3</div>
+              </div>
+            </div>
+
+            <div class="Timer-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="queue">
+                Timer Tasks
+              </div>
+              <div class="queue">
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 60%">c1</div>
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 55%;">c2</div>
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 50%;">c3</div>
+              </div>
+            </div>
+
+
+            <div class="Render">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="micro">
+                Render
+              </div>
+              <div class="render">
+                <div data-id="cp" style="opacity: 100%; position: absolute;" >r</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #c678dd; margin-right: 25%;">S</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #98c379;">L</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #e06c67;">P</div>
+              </div>
+            </div>
+
+            <div class="Micro-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="micro">
+                Micro Tasks
+              </div>
+              <div class="micro">
+                <div data-id="cp" style="position: absolute; opacity: 0%; right: 60%;">m1</div>
+                <div data-id="cp" style="position: absolute; opacity: 0%; right: 60%;">m2</div>
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 60%;">m3</div>
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 55%;">m4</div>
+                <div data-id="cp" style="position: absolute; opacity: 0%;">m5</div>
+                <div data-id="cp" style="position: absolute; opacity: 0%;">m6</div>
+              </div>
+            </div>
+
+            <div class="Console">
+              Console
+              <div class="output">
+                <p data-id="hello" style="opacity: 0%;">1.5</p>
+                <p data-id="hello" style="opacity: 0%;">2.5</p>
+                <p data-id="hello" style="opacity: 0%;">3.5</p>
+                <p data-id="hello" style="opacity: 0%;">4.5</p>
+              </div>
+            </div>
+
+            <div class="Event-Loop">
+              <div style="display: flex;">
+                <div>
+                  <img width="50px" style="margin: 0; margin-right: 20px;" src="svg/event.svg" alt="loop">
+                </div>
+                <div data-id="loop">
+                  Event Loop
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!--------------------------------- 2 --------------------------------->
+        <section data-background-color="#1d2127" data-auto-animate>
+          <div class="grid-container">
+            <div class="Call-stack">
+              Call stack
+              <div class="stack">
+                <div data-id="anonymous" style="opacity: 100%;">m2()</div>
+                <div data-id="anonymous" style="opacity: 100%;">compute(2.5)</div>
+              </div>
+            </div>
+
+            <div class="Web-APIs">
+              Web APIs
+              <div class="apis">
+                <div style="display: flex; justify-content: center; opacity: 0%;" data-id="timout">
+                  <div>
+                    btnClick(cc)
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="Code" style="height: 500px;">
+              Code
+              <pre style="padding: 10px"><code data-trim data-id="code" data-line-numbers=6>
+                const compute = (n) => {};
+
+                const nums = [1.5, 2.5, 3.5, 4.5];
+                for (const n of nums) {
+                  Promise.resolve().then(() =>
+                    compute(n)
+                  );
+                }
+              </code></pre>
+            </div>
+
+            <div class="DOM-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="queue">
+                DOM Tasks
+              </div>
+              <div class="render">
+                <div data-id="ct" style="opacity: 100%;">c1</div>
+                <div data-id="ct" style="opacity: 100%;">c2</div>
+                <div data-id="ct" style="opacity: 100%;">c3</div>
+              </div>
+            </div>
+
+            <div class="UI-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="ui">
+                UI Tasks
+              </div>
+              <div class="queue">
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 60%;">c1</div>
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 55%;">c2</div>
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 50%;">c3</div>
+              </div>
+            </div>
+
+            <div class="Timer-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="queue">
+                Timer Tasks
+              </div>
+              <div class="queue">
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 60%">c1</div>
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 55%;">c2</div>
+                <div data-id="ct" style="opacity: 100%; position: absolute; right: 50%;">c3</div>
+              </div>
+            </div>
+
+
+            <div class="Render">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="micro">
+                Render
+              </div>
+              <div class="render">
+                <div data-id="cp" style="opacity: 100%; position: absolute;" >r</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #c678dd; margin-right: 25%;">S</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #98c379;">L</div>
+                <div data-id="cp" style="opacity: 70%; background-color: #e06c67;">P</div>
+              </div>
+            </div>
+
+            <div class="Micro-Tasks">
+              <div style="width: 300px; display: grid; place-items: center;" data-id="micro">
+                Micro Tasks
+              </div>
+              <div class="micro">
+                <div data-id="cp" style="position: absolute; opacity: 0%; right: 60%;">m1</div>
+                <div data-id="cp" style="position: absolute; opacity: 0%; right: 60%;">m2</div>
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 60%;">m3</div>
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 55%;">m4</div>
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 50%;">m5</div>
+                <div data-id="cp" style="position: absolute; opacity: 100%; right: 45%;">m6</div>
+              </div>
+            </div>
+
+            <div class="Console">
+              Console
+              <div class="output">
+                <p data-id="hello" style="opacity: 0%;">1.5</p>
+                <p data-id="hello" style="opacity: 0%;">2.5</p>
+                <p data-id="hello" style="opacity: 0%;">3.5</p>
+                <p data-id="hello" style="opacity: 0%;">4.5</p>
+              </div>
+            </div>
+
+            <div class="Event-Loop">
+              <div style="display: flex;">
+                <div>
+                  <img width="50px" style="margin: 0; margin-right: 20px;" src="svg/event.svg" alt="loop">
+                </div>
+                <div data-id="loop">
+                  Event Loop
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        center: false,
+        width: 1800,
+        height: 900,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ],
+        dependencies: [
+            // Other plugins
+            {src: 'node_modules/revealjs-animated/dist/revealjs-animated.js', async: true}
+        ]
+      });
+    </script>
+  </body>
+</html>
