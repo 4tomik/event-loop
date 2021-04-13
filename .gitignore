@@ -8,6 +8,5 @@ out/
 log/*.log
 tmp/**
 node_modules/
-!./node_modules/revealjs-animated/dist/revealjs-animated.js
 .sass-cache
 dist/*.map
