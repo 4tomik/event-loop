@@ -1,0 +1,28 @@
+body {
+  background-color: #1d2127;
+  color: #fff;
+  font-family: "Overpass Mono", monospace;
+}
+
+button:hover {
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.post {
+  background-color: #282c34;
+  margin-bottom: 15px;
+  padding: 5px 20px 5px 20px;
+  border-radius: 12px;
+}
+
+.post h4 {
+  color: #98c379;
+}
+
+.post span {
+  color: #61afef;
+}
