@@ -1,11 +1,7 @@
 console.log("Hello");
 
-setTimeout(() => {
-  console.log("Time");
-}, 2000);
+setTimeout(() => console.log("Time"), 0)
 
-Promise.resolve("Promise").then((v) => {
-  console.log(v);
-});
+Promise.resolve().then(() => console.log("Promise"))
 
-console.log("World");
+console.log("World")
